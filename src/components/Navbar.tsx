@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import github from '../img/github-icon.svg'
-import logo from '../img/logo.svg'
 
-const Navbar = class extends React.Component {
+const github = require('../img/github-icon.svg') as string;
+const logo = require('../img/logo.svg') as string;
+
+const Navbar = class extends React.Component<{}, {active: boolean, navBarActiveClass: string}> {
   constructor(props) {
     super(props)
     this.state = {

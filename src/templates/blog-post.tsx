@@ -1,10 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { ReactNodeLike } from 'prop-types'
 import { kebabCase } from 'lodash'
 import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+
+interface BlogPostTemplateProps {
+  content: ReactNodeLike,
+  contentComponent?: (...args: any[]) => any,
+  description: string,
+  tags: any,
+  title: string,
+  helmet?: object,
+}
 
 export const BlogPostTemplate = ({
   content,
@@ -13,7 +22,7 @@ export const BlogPostTemplate = ({
   tags,
   title,
   helmet,
-}) => {
+} : BlogPostTemplateProps) => {
   const PostContent = contentComponent || Content
 
   return (

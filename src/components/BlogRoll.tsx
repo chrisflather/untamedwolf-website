@@ -3,7 +3,15 @@ import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
 
-class BlogRoll extends React.Component {
+class BlogRoll extends React.Component<{data:any, count: number},{}> {
+  static propTypes = {
+    data: PropTypes.shape({
+      allMarkdownRemark: PropTypes.shape({
+        edges: PropTypes.array,
+      }),
+    }),
+  }
+
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
@@ -60,14 +68,6 @@ class BlogRoll extends React.Component {
   }
 }
 
-BlogRoll.propTypes = {
-  data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
-      edges: PropTypes.array,
-    }),
-  }),
-}
-
 export default () => (
   <StaticQuery
     query={graphql`
@@ -101,6 +101,6 @@ export default () => (
         }
       }
     `}
-    render={(data, count) => <BlogRoll data={data} count={count} />}
+    render={( data, count? ) => <BlogRoll data={data} count={count} />}
   />
 )

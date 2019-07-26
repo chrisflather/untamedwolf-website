@@ -4,7 +4,13 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 
-export const AboutPageTemplate = ({ title, content, contentComponent }) => {
+interface AboutPagePreviewProps { 
+  title: string; 
+  content: string; 
+  contentComponent?: (...args: any[]) => any; 
+}
+
+export const AboutPageTemplate = ({ title, content, contentComponent } : AboutPagePreviewProps) => {
   const PageContent = contentComponent || Content
 
   return (
